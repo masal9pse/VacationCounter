@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
  state: {
   drawer: false,
-  auth_user: null
+  auth_user: null,
+  test: 'testだよ〜'
  },
  mutations: {
   toggleSideMenu(state) {

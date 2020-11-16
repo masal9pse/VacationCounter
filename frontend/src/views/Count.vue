@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import store from "../store/index.js";
 import axios from "axios";
 export default {
   data() {
@@ -40,6 +41,8 @@ export default {
   mounted() {
     //this.todos = JSON.parse(localStorage.getItem("this.todos")) || [];
     this.lessonList();
+    console.log(store.state.auth_user);
+    console.log(store.state.test);
   },
   methods: {
     lessonList() {
@@ -49,6 +52,11 @@ export default {
         console.log(response);
       });
     },
+    //login_check() {
+    //  if (!$store.state.auth_user) {
+    //    redirect("/login");
+    //  }
+    //},
     templateJson() {
       let setJson = JSON.stringify(this.todos);
       localStorage.setItem("this.todos", setJson);
