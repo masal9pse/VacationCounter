@@ -26,11 +26,11 @@ export default {
   },
   methods: {
     async submit() {
-      await this.$store.dispatch("auth/login", {
+      await this.$store.dispatch("/api/login", {
         email: this.email,
         password: this.password
       });
-      this.$router.push("/admin");
+      this.$router.push("/");
     }
   }
 };
