@@ -4,7 +4,7 @@ import vuetify from './plugins/vuetify';
 import store from './store';
 import router from './router';
 import axios from 'axios';
-
+import VueMeta from 'vue-meta';
 
 Vue.use(axios);
 Vue.use(VueMeta, {refreshOnceOnNavigation: true});    //追加
