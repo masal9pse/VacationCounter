@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--<Header />-->
     <div class="main-container">
       <v-form v-model="valid">
         <v-text-field v-model="form.email" :rules="emailRules" label="E-mail" required></v-text-field>
@@ -11,7 +10,7 @@
           required
           type="password"
         ></v-text-field>
-        <v-btn small>submit</v-btn>
+        <v-btn small @click="login">submit</v-btn>
       </v-form>
     </div>
   </div>
@@ -28,7 +27,7 @@ export default {
   created() {
     const user = this.$store.getters["auth/user"];
     if (user !== null) {
-      this.$router.push("/todo");
+      this.$router.push("/");
     }
   },
   data() {
@@ -45,6 +44,13 @@ export default {
       ],
       passwordRules: [v => !!v || "パスワードを入力してください"]
     };
+  },
+  methods: {
+    //追加
+    async login() {
+      await this.$store.dispatch("auth/login", this.form);
+      this.$router.push("/");
+    }
   }
 };
 </script>

@@ -26,6 +26,10 @@ const actions = {
   commit('setUser', user);
  },
 
+ async login({commit}, data) {    //追加
+  const response = await axios.post('/api/login', data);
+  commit('setUser', response.data);
+ }
 }
 
 export default {
