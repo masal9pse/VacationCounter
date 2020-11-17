@@ -18,7 +18,8 @@
           <v-text-field label="メモ" v-model="todo.memo" @input="addMemo"></v-text-field>
         </v-card-text>
         <v-card-actions>
-          <v-btn @click="increment(todo)" color="primary">さぼり回数(+)</v-btn>
+          <!--<v-btn @click="increment(todo)" color="primary">さぼり回数(+)</v-btn>-->
+          <v-btn @click="increment(todo.id,todo.count+1)" color="primary">さぼり回数(+)</v-btn>
           <span>{{ todo.count }}</span>
           <v-btn @click="decrement(todo)" color="error">間違い(-)</v-btn>
           <v-btn @click="deleteItem(index)">削除</v-btn>
@@ -82,8 +83,15 @@ export default {
       }
       this.name = "";
     },
-    increment(todo) {
-      todo.count++;
+    increment(todo, count) {
+      axios
+        .put("/api/lesson/update/" + todo, {
+          count: count
+        })
+        .then(response => {
+          console.log(response);
+          todo.count++;
+        });
     },
     decrement(todo) {
       if (todo.count > 0) {
