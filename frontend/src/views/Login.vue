@@ -1,37 +1,57 @@
 <template>
-  <section>
-    <h1>Login</h1>
-    <form @submit.prevent="submit">
-      <div>
-        <label for="email">email</label>
-        <input type="text" id="email" v-model="email" />
-      </div>
-      <div>
-        <label for="password">password</label>
-        <input type="password" id="password" v-model="password" />
-      </div>
-      <button type="submit">login</button>
-    </form>
-  </section>
+  <div>
+    <!--<Header />-->
+    <div class="main-container">
+      <v-form v-model="valid">
+        <v-text-field v-model="form.email" :rules="emailRules" label="E-mail" required></v-text-field>
+        <v-text-field
+          v-model="form.password"
+          :rules="passwordRules"
+          label="Password"
+          required
+          type="password"
+        ></v-text-field>
+        <v-btn small>submit</v-btn>
+      </v-form>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  middleware: "logined_admin_user",
+  metaInfo: {
+    title: "ログイン",
+    htmlAttrs: {
+      lang: "ja"
+    }
+  },
+  created() {
+    const user = this.$store.getters["auth/user"];
+    if (user !== null) {
+      this.$router.push("/todo");
+    }
+  },
   data() {
     return {
-      email: "",
-      password: ""
+      form: {
+        email: "",
+        password: ""
+      },
+      emailRules: [
+        v => !!v || "E-mailを入力してください",
+        v =>
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "E-mailを正しく入力してください"
+      ],
+      passwordRules: [v => !!v || "パスワードを入力してください"]
     };
-  },
-  methods: {
-    async submit() {
-      await this.$store.dispatch("store/index/login", {
-        email: this.email,
-        password: this.password
-      });
-      this.$router.push("/");
-    }
   }
 };
 </script>
+
+<style>
+.main-container {
+  width: 500px;
+  margin: auto;
+}
+</style>
