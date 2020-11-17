@@ -3,8 +3,7 @@
     <Header />
     <div class="main-container">
       <v-form v-model="valid">
-        //・・・①
-        <v-text-field v-model="form.name" :rules="nameRules" label="Name" required></v-text-field>//・・・②
+        <v-text-field v-model="form.name" :rules="nameRules" label="Name" required></v-text-field>
         <v-text-field v-model="form.email" :rules="emailRules" label="E-mail" required></v-text-field>
         <v-text-field
           v-model="form.password"
@@ -32,6 +31,12 @@ import Header from "./Header";
 export default {
   components: {
     Header
+  },
+  created() {
+    const user = this.$store.getters["auth/user"];
+    if (user !== null) {
+      this.$router.push("/");
+    }
   },
   metaInfo: {
     //・・・③
