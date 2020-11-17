@@ -54,7 +54,6 @@ export default {
     }
   },
   mounted() {
-    //this.todos = JSON.parse(localStorage.getItem("this.todos")) || [];
     this.lessonList();
   },
   methods: {
@@ -65,22 +64,7 @@ export default {
         console.log(response);
       });
     },
-    //login_check() {
-    //  if (!$store.state.auth_user) {
-    //    redirect("/login");
-    //  }
-    //},
-    templateJson() {
-      let setJson = JSON.stringify(this.todos);
-      localStorage.setItem("this.todos", setJson);
-    },
-    templateJsonz() {
-      let setJson = JSON.stringify(this.todos);
-      localStorage.removeItem("this.todos");
-      localStorage.setItem("this.todos", setJson);
-    },
     addMemo() {
-      this.templateJson();
       this.isActive = false;
     },
     addTodo() {
@@ -91,11 +75,9 @@ export default {
         });
       }
       this.name = "";
-      this.templateJson();
     },
     increment(todo) {
       todo.count++;
-      this.templateJson();
     },
     decrement(todo) {
       if (todo.count > 0) {
@@ -103,9 +85,9 @@ export default {
       }
       this.templateJson();
     },
-    deleteItem(index) {
-      this.todos.splice(index, 1);
-      this.templateJsonz();
+    async deleteItem(id) {
+      await axios.delete("/api/lesson/destroy/" + id);
+      this.todos.splice(id, 1);
     }
   }
 };
