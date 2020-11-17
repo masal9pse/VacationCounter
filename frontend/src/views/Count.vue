@@ -40,6 +40,19 @@ export default {
       todos: []
     };
   },
+  created() {
+    //・・・④
+    const user = this.$store.getters["auth/user"];
+    if (user === null) {
+      this.$router.push("/login");
+    }
+  },
+  computed: {
+    user() {
+      //・・・⑤
+      return this.$store.getters["auth/user"];
+    }
+  },
   mounted() {
     //this.todos = JSON.parse(localStorage.getItem("this.todos")) || [];
     this.lessonList();

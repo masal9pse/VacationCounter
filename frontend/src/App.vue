@@ -17,7 +17,6 @@
 <script>
 import { mapActions } from "vuex";
 
-// import Count from "./components/Count";
 import SideNav from "./components/SideNav";
 export default {
   name: "App",

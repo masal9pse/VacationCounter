@@ -4,7 +4,8 @@ import About from '../views/About.vue'
 import Count from '../views/Count.vue'
 import Login from '../views/Login'
 //import Login from '../components/Login';
-import Register from '../components/Register';
+//import Register from '../components/Register';
+import Register from '../views/Register';
 //import Todo from '../components/Todo';    //追加
 Vue.use(Router)
 
