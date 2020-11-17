@@ -26,7 +26,6 @@ Route::group(["middleware" => "api"], function () {
     Route::get('/lesson', function () {
         return Lesson::all();
     });
-    Route::delete('/lesson/destroy/{id}', 'Api\LessonController@destroy');
     Route::post('/register', 'Api\Auth\RegisterController@register')->name('register');
     Route::post('/login', 'Api\Auth\LoginController@login')->name('login');
     Route::get('/user', function () {
@@ -37,5 +36,7 @@ Route::group(["middleware" => "api"], function () {
 //追加
 Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/logout', 'Api\Auth\LoginController@logout')->name('logout');
-    //Route::apiResource('admin_users', 'Api\AdminUserController')->except(['show']);
+    Route::delete('/lesson/destroy/{id}', 'Api\LessonController@destroy');
+    Route::put('/lesson/update/{id}', 'Api\LessonController@update');
+    //Route::put('/lesson/update/{id}', 'Api\LessonController@update');
 });

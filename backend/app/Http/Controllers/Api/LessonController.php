@@ -13,4 +13,13 @@ class LessonController extends Controller
         Lesson::find($id)->delete();
         return response('', 200);
     }
+
+    public function update(Request $request, $id)
+    {
+        $lesson = Lesson::find($id);
+        $lesson->count = $request->count;
+        $lesson->save();
+
+        return response('', 200);
+    }
 }
