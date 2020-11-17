@@ -1,5 +1,6 @@
 <?php
 
+use App\Lesson;
 use Illuminate\Http\Request;
 
 /*
@@ -22,7 +23,9 @@ Route::get('/', function () {
 });
 
 Route::group(["middleware" => "api"], function () {
-    Route::get('/lesson', 'Api\Auth\RegisterController@index')->name('index');
+    Route::get('/lesson', function () {
+        return Lesson::all();
+    });
     Route::post('/register', 'Api\Auth\RegisterController@register')->name('register');
     Route::post('/login', 'Api\Auth\LoginController@login')->name('login');
     Route::get('/user', function () {
