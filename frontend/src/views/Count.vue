@@ -3,6 +3,9 @@
     <v-row>
       <v-col cols="6">
         <v-text-field v-model="name" label="授業名" @keyup.enter="addTodo" @click="addTodo" required></v-text-field>
+        <v-btn icon @click="logout">
+          <v-icon>mdi-logout</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
     <v-card card_id width="348" class="mx-auto mb-5">
@@ -26,11 +29,9 @@
 </template>
 
 <script>
-//import store from "../store/index.js";
 import axios from "axios";
 
 export default {
-  //middleware: "not_logined_auth_user",
   data() {
     return {
       count: 0,
@@ -46,6 +47,7 @@ export default {
     if (user === null) {
       this.$router.push("/login");
     }
+    this.lessonList();
   },
   computed: {
     user() {
@@ -53,10 +55,14 @@ export default {
       return this.$store.getters["auth/user"];
     }
   },
-  mounted() {
-    this.lessonList();
-  },
+  //mounted() {
+  //  this.lessonList();
+  //},
   methods: {
+    async logout() {
+      await this.$store.dispatch("auth/logout");
+      this.$router.push("/login");
+    },
     lessonList() {
       //console.log(axios);
       axios.get(this.uri).then(response => {
@@ -83,7 +89,6 @@ export default {
       if (todo.count > 0) {
         todo.count--;
       }
-      this.templateJson();
     },
     async deleteItem(id) {
       await axios.delete("/api/lesson/destroy/" + id);

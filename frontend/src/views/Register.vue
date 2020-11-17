@@ -2,7 +2,8 @@
   <div>
     <!--<Header />-->
     <div class="main-container">
-      <v-form v-model="valid">
+      <!--<v-form v-model="valid">-->
+      <v-form>
         <v-text-field v-model="form.name" :rules="nameRules" :counter="10" label="Name" required></v-text-field>
         <v-text-field v-model="form.email" :rules="emailRules" label="E-mail" required></v-text-field>
         <v-text-field

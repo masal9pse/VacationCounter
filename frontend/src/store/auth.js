@@ -29,6 +29,11 @@ const actions = {
  async login({commit}, data) {    //追加
   const response = await axios.post('/api/login', data);
   commit('setUser', response.data);
+ },
+
+ async logout({commit}) {    //追加
+  await axios.post('/api/logout');
+  commit('setUser', null);
  }
 }
 
