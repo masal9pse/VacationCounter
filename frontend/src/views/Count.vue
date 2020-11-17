@@ -26,9 +26,12 @@
 </template>
 
 <script>
+//import store from "../store/store.js";
 import store from "../store/index.js";
 import axios from "axios";
+
 export default {
+  middleware: "not_logined_auth_user",
   data() {
     return {
       count: 0,
@@ -41,7 +44,7 @@ export default {
   mounted() {
     //this.todos = JSON.parse(localStorage.getItem("this.todos")) || [];
     this.lessonList();
-    console.log(store.state.auth_user);
+    //console.log(store.state.auth_user);
     console.log(store.state.test);
   },
   methods: {

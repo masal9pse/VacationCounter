@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     async submit() {
-      await this.$store.dispatch("/api/login", {
+      await this.$store.dispatch("store/index/login", {
         email: this.email,
         password: this.password
       });
