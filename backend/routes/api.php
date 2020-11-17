@@ -21,9 +21,8 @@ Route::get('/', function () {
     return 'helloworld';
 });
 
-
-Route::get('/lesson', 'Api\Auth\RegisterController@index')->name('index');
 Route::group(["middleware" => "api"], function () {
+    Route::get('/lesson', 'Api\Auth\RegisterController@index')->name('index');
     Route::post('/register', 'Api\Auth\RegisterController@register')->name('register');
     Route::post('/login', 'Api\Auth\LoginController@login')->name('login');
     Route::get('/user', function () {

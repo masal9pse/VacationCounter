@@ -26,26 +26,23 @@
 </template>
 
 <script>
-//import store from "../store/store.js";
-import store from "../store/index.js";
+//import store from "../store/index.js";
 import axios from "axios";
 
 export default {
-  middleware: "not_logined_auth_user",
+  //middleware: "not_logined_auth_user",
   data() {
     return {
       count: 0,
       name: "",
       memo: [],
-      uri: "api/lesson/",
+      uri: "/api/lesson/",
       todos: []
     };
   },
   mounted() {
     //this.todos = JSON.parse(localStorage.getItem("this.todos")) || [];
     this.lessonList();
-    //console.log(store.state.auth_user);
-    console.log(store.state.test);
   },
   methods: {
     lessonList() {

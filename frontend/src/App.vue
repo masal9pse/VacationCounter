@@ -7,11 +7,6 @@
         <span class="font-weight-light">Vacation Counter</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <!-- <v-tabs align-with-title background-color="transparent">
-        <v-tab>本編</v-tab>
-        <v-tab>雑談</v-tab>
-        <v-tab>トーク</v-tab>
-      </v-tabs>-->
     </v-app-bar>
     <v-content>
       <router-view></router-view>
