@@ -35,8 +35,10 @@ Route::group(["middleware" => "api"], function () {
 
 //追加
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/lesson/user', 'Api\LessonController@allIndex');
     Route::post('/logout', 'Api\Auth\LoginController@logout')->name('logout');
     Route::delete('/lesson/destroy/{id}', 'Api\LessonController@destroy');
+
     Route::put('/lesson/update/{id}', 'Api\LessonController@update');
     //Route::put('/lesson/update/{id}', 'Api\LessonController@update');
 });

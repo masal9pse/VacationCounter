@@ -8,6 +8,13 @@ use App\Lesson;
 
 class LessonController extends Controller
 {
+    public function allIndex(Request $request)
+    {
+        $data = Lesson::where('user_id', $request->user()->id)->get();
+
+        return $data;
+    }
+
     public function destroy($id)
     {
         Lesson::find($id)->delete();
