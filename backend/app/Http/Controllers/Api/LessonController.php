@@ -15,6 +15,14 @@ class LessonController extends Controller
         return $data;
     }
 
+    public function lessonCreate(Request $request)
+    {
+        $lesson = new Lesson();
+        $lesson->lesson = $request->lesson;
+        $lesson->save();
+        return redirect('api/lessoncreate');
+    }
+
     public function destroy($id)
     {
         Lesson::find($id)->delete();

@@ -36,6 +36,7 @@ Route::group(["middleware" => "api"], function () {
 //追加
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/lesson/user', 'Api\LessonController@allIndex');
+    Route::post('/lesson/lessoncreate', 'Api\LessonController@lessonCreate');
     Route::post('/logout', 'Api\Auth\LoginController@logout')->name('logout');
     Route::delete('/lesson/destroy/{id}', 'Api\LessonController@destroy');
 
