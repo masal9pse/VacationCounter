@@ -11,6 +11,8 @@ class CreateLessonsTable extends Migration
      *
      * @return void
      */
+    // Posgreの場合、何も設定していなくても自動でnot Null(require)になってしまう。
+    // Mysqlは検証していない
     public function up()
     {
         Schema::create('lessons', function (Blueprint $table) {

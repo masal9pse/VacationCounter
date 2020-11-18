@@ -17,10 +17,19 @@ class LessonController extends Controller
 
     public function lessonCreate(Request $request)
     {
-        $lesson = new Lesson();
-        $lesson->lesson = $request->lesson;
-        $lesson->save();
-        return redirect('api/lessoncreate');
+        $request->validate([
+            'lesson' => 'required',
+            'memo' => 'nullable',
+        ]);
+
+        $lesson = Lesson::create([
+            'lesson' => $request->lesson,
+        ]);
+
+        return response()->json([
+            'user' => $lesson,
+            'message' => '投稿に成功しました。'
+        ], 200);
     }
 
     public function destroy($id)

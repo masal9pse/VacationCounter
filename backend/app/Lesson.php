@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
+    //protected $fillable = [
+    //    'id', 'lesson', 'memo', 'count',
+    //];
     protected $fillable = [
-        'lesson', 'memo', 'count',
+        'id', 'lesson'
     ];
 }
