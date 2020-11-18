@@ -11,7 +11,7 @@
     <v-card card_id width="348" class="mx-auto mb-5">
       <v-card-title>授業名を入力してください</v-card-title>
     </v-card>
-    <div v-for="(todo,index) in todos" :key="todo.name">
+    <div v-for="(todo,index) in todos" :key="todo.id">
       <v-card card_id max-width="344" class="mx-auto pt-6">
         <v-card-title>{{ todo.lesson }}</v-card-title>
         <v-card-text>
@@ -86,11 +86,15 @@ export default {
     increment(todo, count) {
       axios
         .put("/api/lesson/update/" + todo, {
-          count: count
+          //count: count
+          count
         })
         .then(response => {
           console.log(response);
-          todo.count++;
+          //todo.count = response;
+          //this.count = todo.count;
+          //this.count++;
+          count = response.data.count;
         });
     },
     decrement(todo) {
