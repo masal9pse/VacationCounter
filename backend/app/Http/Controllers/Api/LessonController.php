@@ -26,16 +26,22 @@ class LessonController extends Controller
             'lesson' => $request->lesson,
         ]);
 
-        return response()->json([
-            'user' => $lesson,
-            'message' => '投稿に成功しました。'
-        ], 200);
+        //return response()->json([
+        //    'lesson' => $lesson,
+        //    'message' => '投稿に成功しました。'
+        //], 200);
+        return ['lesson' => $lesson];
     }
 
     public function destroy($id)
     {
-        Lesson::find($id)->delete();
-        return response('', 200);
+        $lesson = Lesson::find($id)->delete();
+        //return ['lesson' => $lesson];
+
+        return response()->json([
+            'lesson' => $lesson, // boolean
+            'message' => '投稿の削除に成功しました。'
+        ], 200);
     }
 
     public function update(Request $request, $id)
@@ -44,6 +50,9 @@ class LessonController extends Controller
         $lesson->count = $request->count;
         $lesson->save();
 
-        return response('', 200);
+        return response()->json([
+            'lesson' => $lesson,
+            'message' => 'カウントアップに成功しました。'
+        ], 200);
     }
 }
